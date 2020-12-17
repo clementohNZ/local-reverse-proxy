@@ -18,14 +18,14 @@ server {
   listen                  443 ssl;
   ssl_certificate         /etc/ssl/certs/myssl.crt;
   ssl_certificate_key     /etc/ssl/private/myssl.key;
-  server_name             globalLottery;
+  server_name             myApp;
 
   # Backend Service
   location /local {
       proxy_pass  http://localhost:8000;
   }
   
-  # React frontend
+  # Frontend
   location / {
       proxy_pass  http://localhost:3000/;
   }
@@ -37,7 +37,7 @@ server {
 4. Update your hosts file in `/etc/hosts` file with the following values.
 
 ```
-127.0.0.1	    local.globallottery.com
+127.0.0.1	    local.myapp.com
 ```
 
 ## Linux (Ubuntu or Ubuntu-based distro)
