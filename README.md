@@ -55,3 +55,22 @@ With Ubuntu, the setup is very similar to MacOS, but ever so slightly different.
 4. Run `sudo nginx -s stop` and `sudo nginx` to update nginx with the new configurations.
 
 5. Update your hosts file in `/etc/hosts` file with the following values from the MacOS section above (step 4).
+
+## Using https locally
+
+To test https locally, run the script `generate-self-signed-cert-locally.sh`. Enter a passphrase, but don't
+worry about all the other details.
+
+Then ensure you include the `ssl_certificate` and `ssl_certificate_key` values in your server definition within your
+nginx configuration file located at: `/usr/local/etc/nginx/nginx.conf`. It should look something like:
+
+```
+server {
+    listen               443 ssl;
+    ssl_certificate      /etc/ssl/certs/myssl.crt;
+    ssl_certificate_key  /etc/ssl/private/myssl.key;
+    server_name SERVER_NAME.com;
+    location / {
+    }
+}
+```
